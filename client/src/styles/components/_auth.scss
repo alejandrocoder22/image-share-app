@@ -1,0 +1,37 @@
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 15rem;
+}
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth {
+  &__button {
+    background-color: $button-color;
+    border: none;
+    padding: 0.5rem 0;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  &__input {
+    padding: 0.5rem 0;
+  }
+  &__p,
+  &__link,
+  &__button {
+    color: white;
+  }
+}
+#dark .auth__label {
+  color: white;
+}
+
+#light .auth__p,
+#light .auth__link {
+  color: black;
+}

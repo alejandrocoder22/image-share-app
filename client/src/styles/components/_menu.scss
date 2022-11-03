@@ -1,0 +1,37 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  align-items: center;
+  &__logo {
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+  }
+  &__link {
+    text-decoration: none;
+    color: white;
+  }
+  &__right {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  &__logout {
+    cursor: pointer;
+  }
+  &__logout:hover,
+  &__link:hover {
+    opacity: 0.8;
+  }
+
+  #light &__right {
+    color: black;
+  }
+  #light &__link {
+    color: black;
+  }
+  #light &__logo {
+    color: black;
+  }
+}

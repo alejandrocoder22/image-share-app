@@ -1,0 +1,44 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+img {
+  width: 100%;
+}
+
+#dark {
+  background-color: $background-color-dark;
+}
+
+#light {
+  background-color: $background-color-light;
+}
+
+.min-height {
+  min-height: calc(100vh - 8.1875rem);
+}
+
+.wrapper {
+  padding: 3rem;
+}
+
+@media (max-width: 50rem) {
+  .min-height {
+    min-height: calc(100vh - 5.1875rem);
+  }
+}
+
+@media (max-width: 31.25rem) {
+  .wrapper {
+    padding: 1rem;
+  }
+  .min-height {
+    min-height: calc(100vh - 4.1875rem);
+  }
+}

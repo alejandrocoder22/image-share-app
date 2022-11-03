@@ -1,0 +1,28 @@
+.toggle {
+  cursor: pointer;
+  width: 3rem;
+  background-color: coral;
+  border-radius: 5px;
+  position: relative;
+  height: 2rem;
+  &__light {
+    background-color: rgb(60, 60, 60);
+  }
+  &__dark {
+    background-color: rgb(240, 240, 240);
+  }
+  &__button {
+    position: absolute;
+    top: 0;
+    width: 1.5rem;
+    height: 100%;
+    border-radius: 5px;
+    background-color: rgb(147, 147, 147);
+  }
+  &__left {
+    left: 0;
+  }
+  &__right {
+    right: 0;
+  }
+}
