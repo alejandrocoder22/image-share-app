@@ -1,8 +1,17 @@
-import { useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { FcAddImage } from 'react-icons/fc'
 import { BiImageAdd } from 'react-icons/bi'
-const DropImage: any = () => {
-  const [file, setFile] = useState([])
+
+const DropImage: React.FC = () => {
+  const [file, setFile] = useState<Blob | Object | any>({
+    name: '',
+    lastModified: 0,
+    lastModifiedDate: '',
+    webkitRelativePath: '',
+    size: 0,
+    type: ''
+
+  })
   const [confirmationMessage, setConfirmationMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -29,7 +38,7 @@ const DropImage: any = () => {
       .then(uploadStatus => {
         if (uploadStatus.status === 'SUCESS') {
           uploadConfirmationMessage()
-          setFile({ name: '' })
+          setFile('')
           setErrorMessage('')
         }
         if (uploadStatus.status === 'FAIL') {
@@ -44,14 +53,14 @@ const DropImage: any = () => {
 
   const formContainer: any = useRef(null)
 
-  const dragStart: any = (e: any) => formContainer.current.classList.add('drag-start')
-  const dragEnd: any = (e: any) => formContainer.current.classList.remove('drag-start')
-  const drop: any = (e: any) => formContainer.current.classList.remove('drag-start')
+  const dragStart: any = () => formContainer.current.classList.add('drag-start')
+  const dragEnd: any = () => formContainer.current.classList.remove('drag-start')
+  const drop: any = () => formContainer.current.classList.remove('drag-start')
 
   return (
     <>
-      {confirmationMessage && <span className='form-container__confirmation-message'>{confirmationMessage}</span>}
-      {errorMessage && <span className='form-container__confirmation-message'>{errorMessage}</span>}
+      {confirmationMessage.length > 0 && <span className='form-container__confirmation-message'>{confirmationMessage}</span>}
+      {errorMessage.length > 0 && <span className='form-container__confirmation-message'>{errorMessage}</span>}
       <div ref={formContainer} className='form-container'>
 
         <>
@@ -69,7 +78,7 @@ const DropImage: any = () => {
 
         </>
       </div>
-      {file.name && (
+      {file.name.length > 0 && (
         <div className='form-container__image-uploaded-info'>
           <FcAddImage className='form-container__icon' />
           <span className='form-container__span'>{file.name}</span>
