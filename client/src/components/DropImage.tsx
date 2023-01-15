@@ -3,7 +3,7 @@ import { FcAddImage } from 'react-icons/fc'
 import { BiImageAdd } from 'react-icons/bi'
 import { onUploadImage } from '../services/onUploadImage'
 
-const DropImage: React.FC = () => {
+const DropImage: React.FC = (props: any) => {
   const [file, setFile] = useState<Blob | Object | any>({
     name: '',
     lastModified: 0,
@@ -59,7 +59,7 @@ const DropImage: React.FC = () => {
           <FcAddImage className='form-container__icon' />
           <span className='form-container__span'>{file.name}</span>
         </div>)}
-      <button onClick={(e) => onUploadImage(e, uploadConfirmationMessage, setFile, setErrorMessage, file)} disabled={!file} className='form-container__button'>Upload</button>
+      <button onClick={(e) => onUploadImage(e, uploadConfirmationMessage, setFile, setErrorMessage, file, props.setImages)} disabled={!file} className='form-container__button'>Upload</button>
 
     </>
   )

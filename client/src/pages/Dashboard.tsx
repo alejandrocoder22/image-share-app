@@ -3,21 +3,12 @@ import { AiFillDelete, AiFillCopy } from 'react-icons/ai'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import DropImage from '../components/DropImage'
 import { apiUrl } from '../services/apiUrl'
+import { getUserImages } from '../services/getAllImages'
 const Dashboard: any = () => {
   const [images, setImages] = useState<any[]>([])
 
-  const getPrivateImages: any = () => {
-    fetch(apiUrl + 'images', {
-      method: 'GET',
-      headers: {
-        token: `Bearer ${localStorage.getItem('token')}`
-      }
-    }).then(async response => await response.json())
-      .then(privateImages => setImages(privateImages.data))
-      .catch(error => console.log(error))
-  }
   useEffect(() => {
-    getPrivateImages()
+    getUserImages(setImages)
   }, [])
 
   const onDeleteImage: any = (imageId: number, imageUrl: string) => {
@@ -33,7 +24,7 @@ const Dashboard: any = () => {
   return (
     <div className='dashboard wrapper min-height'>
       <div className='dashboard__drop-image-container'>
-        <DropImage />
+        <DropImage setImages={setImages} />
       </div>
       <div className='dashboard__images-container'>
         {

@@ -1,6 +1,7 @@
 import { apiUrl } from './apiUrl'
+import { getUserImages } from './getAllImages'
 
-export const onUploadImage: any = (e: any, uploadConfirmationMessage: any, setFile: any, setErrorMessage: any, file: any) => {
+export const onUploadImage: any = (e: any, uploadConfirmationMessage: any, setFile: any, setErrorMessage: any, file: any, setImages) => {
   e.preventDefault()
 
   const formData = new FormData()
@@ -18,6 +19,7 @@ export const onUploadImage: any = (e: any, uploadConfirmationMessage: any, setFi
         uploadConfirmationMessage()
         setFile('')
         setErrorMessage('')
+        getUserImages(setImages)
       }
       if (uploadStatus.status === 'FAIL') {
         setErrorMessage(uploadStatus.message)
