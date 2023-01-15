@@ -14,10 +14,13 @@ My primary goal was to experiment with a first approach to Typescript and learn 
 
 After cloning the project:
 
-Install all dependencies 
+Install all dependencies in server and client
 
 ```
+cd client
 npm install 
+cd server
+npm install
 ```
 
 Install postgreSQL and add the following database / Tables
