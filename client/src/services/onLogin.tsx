@@ -1,9 +1,10 @@
+import { apiUrl } from './apiUrl'
 
 export const onLogin: any = (form: any, userContext: any, navigate: any, e: any) => {
   e.preventDefault()
 
   if (form.username.length > 0 && form.password.length > 0) {
-    fetch('https://imagesapi.alejandrocoder.com/auth/login', {
+    fetch(apiUrl + 'auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'Application/json'

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { FcAddImage } from 'react-icons/fc'
 import { BiImageAdd } from 'react-icons/bi'
+import { onUploadImage } from '../services/onUploadImage'
 
 const DropImage: React.FC = () => {
   const [file, setFile] = useState<Blob | Object | any>({
@@ -22,31 +23,6 @@ const DropImage: React.FC = () => {
     }, 3000)
   }
 
-  const onSubmitForm: any = (e: any) => {
-    e.preventDefault()
-
-    const formData = new FormData()
-    formData.append('image', file)
-
-    fetch('https://imagesapi.alejandrocoder.com/images', {
-      method: 'POST',
-      headers: {
-        token: `Bearer ${localStorage.getItem('token')}`
-      },
-      body: formData
-    }).then(async response => await response.json())
-      .then(uploadStatus => {
-        if (uploadStatus.status === 'SUCESS') {
-          uploadConfirmationMessage()
-          setFile('')
-          setErrorMessage('')
-        }
-        if (uploadStatus.status === 'FAIL') {
-          setErrorMessage(uploadStatus.message)
-        }
-      }).catch(error => console.log(error))
-  }
-
   const handleFile: any = (e: any) => {
     setFile(e.target.files[0])
   }
@@ -59,8 +35,8 @@ const DropImage: React.FC = () => {
 
   return (
     <>
-      {confirmationMessage.length > 0 && <span className='form-container__confirmation-message'>{confirmationMessage}</span>}
-      {errorMessage.length > 0 && <span className='form-container__confirmation-message'>{errorMessage}</span>}
+      {confirmationMessage?.length > 0 && <span className='form-container__confirmation-message'>{confirmationMessage}</span>}
+      {errorMessage?.length > 0 && <span className='form-container__confirmation-message'>{errorMessage}</span>}
       <div ref={formContainer} className='form-container'>
 
         <>
@@ -78,12 +54,12 @@ const DropImage: React.FC = () => {
 
         </>
       </div>
-      {file.name.length > 0 && (
+      {file.name?.length > 0 && (
         <div className='form-container__image-uploaded-info'>
           <FcAddImage className='form-container__icon' />
           <span className='form-container__span'>{file.name}</span>
         </div>)}
-      <button onClick={onSubmitForm} disabled={!file} className='form-container__button'>Upload</button>
+      <button onClick={(e) => onUploadImage(e, uploadConfirmationMessage, setFile, setErrorMessage, file)} disabled={!file} className='form-container__button'>Upload</button>
 
     </>
   )

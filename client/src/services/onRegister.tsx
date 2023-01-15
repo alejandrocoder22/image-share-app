@@ -1,3 +1,4 @@
+import { apiUrl } from './apiUrl'
 import { onLogin } from './onLogin'
 
 const delay: any = async (time: number) => await new Promise(resolve => setTimeout(resolve, time))
@@ -5,7 +6,7 @@ const delay: any = async (time: number) => await new Promise(resolve => setTimeo
 export const onRegister: any = async (form: any, userContext: any, navigate: any, e: any) => {
   e.preventDefault()
 
-  await fetch('https://imagesapi.alejandrocoder.com/auth', {
+  await fetch(apiUrl + 'auth', {
     method: 'POST',
     headers: {
       'Content-Type': 'Application/json'

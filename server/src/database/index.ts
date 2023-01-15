@@ -4,7 +4,7 @@ const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'images_app',
-  password: process.env.PG_PASSWORD
+  password: '112224'
 })
 
 export default pool
