@@ -7,6 +7,6 @@ const router = express.Router()
 
 router.get('/', verifyToken, imagesControllers.getPersonalImages)
 router.post('/', verifyToken, upload.single('image'), imagesControllers.createImage)
-router.delete('/:imageId', imagesControllers.deleteImage)
+router.delete('/:imageId/:imgUrl', imagesControllers.deleteImage)
 
 export default router

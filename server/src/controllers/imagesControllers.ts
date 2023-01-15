@@ -1,5 +1,5 @@
 import * as imagesServices from '../services/imagesServices'
-
+import fs from 'fs'
 const getPersonalImages: any = async (req: any, res: any) => {
   const user = req.user
   try {
@@ -29,8 +29,8 @@ const createImage: any = (req: any, res: any) => {
 }
 
 const deleteImage: any = (req: any, res: any) => {
-  const { imageId } = req.params
-
+  const { imageId, imgUrl } = req.params
+  fs.unlink(`./images/${imgUrl}`, err => console.log(err))
   try {
     imagesServices.deleteImage(imageId)
     res.status(200).send({ status: 'SUCESS', message: 'Image Deleted' })

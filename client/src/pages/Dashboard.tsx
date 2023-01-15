@@ -20,8 +20,8 @@ const Dashboard: any = () => {
     getPrivateImages()
   }, [])
 
-  const onDeleteImage: any = (imageId: number) => {
-    fetch(`${apiUrl}images/${imageId}`, {
+  const onDeleteImage: any = (imageId: number, imageUrl: string) => {
+    fetch(`${apiUrl}images/${imageId}${imageUrl}`, {
       method: 'DELETE',
       headers: {
         token: `Bearer ${localStorage.getItem('token')}`
@@ -41,7 +41,7 @@ const Dashboard: any = () => {
           <div key={image.image_id} className='dashboard__image-container'>
             <img loading='lazy' src={`${apiUrl}showImages${image.url}`} className='dashboard__image' />
             <div className='dashboard__image-actions'>
-              <AiFillDelete onClick={() => onDeleteImage(image.image_id)} className='dashboard__delete' />
+              <AiFillDelete onClick={() => onDeleteImage(image.image_id, image.url)} className='dashboard__delete' />
               <CopyToClipboard text={`${apiUrl}showImages${image.url}`}>
                 <AiFillCopy className='dashboard__delete' />
               </CopyToClipboard>
