@@ -60,7 +60,6 @@ const DropImage: React.FC = (props: any) => {
           <span className='form-container__span'>{file.name}</span>
         </div>)}
       <button onClick={(e) => onUploadImage(e, uploadConfirmationMessage, setFile, setErrorMessage, file, props.setImages)} disabled={!file} className='form-container__button'>Upload</button>
-
     </>
   )
 }
