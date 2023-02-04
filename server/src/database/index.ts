@@ -1,6 +1,6 @@
 import { Pool } from 'pg'
 
-const pool = new Pool({
+const pool: any = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'images_app',
