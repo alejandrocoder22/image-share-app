@@ -1,7 +1,7 @@
 import { apiUrl } from './apiUrl'
 import { getUserImages } from './getAllImages'
 
-export const onUploadImage: any = (e: any, uploadConfirmationMessage: any, setFile: any, setErrorMessage: any, file: any, setImages) => {
+export const onUploadImage: any = (e: any, uploadConfirmationMessage: any, setFile: any, setErrorMessage: any, file: any, setImages: any) => {
   e.preventDefault()
 
   const formData = new FormData()
@@ -15,6 +15,7 @@ export const onUploadImage: any = (e: any, uploadConfirmationMessage: any, setFi
     body: formData
   }).then(async response => await response.json())
     .then(uploadStatus => {
+      console.log(uploadStatus)
       if (uploadStatus.status === 'SUCESS') {
         uploadConfirmationMessage()
         setFile('')

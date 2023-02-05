@@ -6,19 +6,24 @@ import { apiUrl } from '../services/apiUrl'
 import { getUserImages } from '../services/getAllImages'
 const Dashboard: any = () => {
   const [images, setImages] = useState<any[]>([])
+  const [selectedId, setSelectedId] = useState(null)
 
   useEffect(() => {
     getUserImages(setImages)
   }, [])
 
-  const onDeleteImage: any = (imageId: number, imageUrl: string) => {
-    fetch(`${apiUrl}images/${imageId}${imageUrl}`, {
-      method: 'DELETE',
-      headers: {
-        token: `Bearer ${localStorage.getItem('token')}`
-      }
-    }).catch(error => console.log(error))
-    setImages(images.filter(image => image.image_id !== imageId))
+  const onDeleteImage: any = (imageId: number, imageUrl: string, id) => {
+    setSelectedId(id)
+
+    setTimeout(() => {
+      fetch(`${apiUrl}images/${imageId}${imageUrl}`, {
+        method: 'DELETE',
+        headers: {
+          token: `Bearer ${localStorage.getItem('token')}`
+        }
+      }).catch(error => console.log(error))
+      setImages(images.filter(image => image.image_id !== imageId))
+    }, 1000)
   }
 
   return (
@@ -29,10 +34,10 @@ const Dashboard: any = () => {
       <div className='dashboard__images-container'>
         {
         images?.map(image => (
-          <div key={image.image_id} className='dashboard__image-container'>
+          <div key={image.image_id} className={`dashboard__image-container ${selectedId === image.image_id ? 'fade' : ''}`}>
             <img loading='lazy' src={`${apiUrl}showImages${image.url}`} className='dashboard__image' />
             <div className='dashboard__image-actions'>
-              <AiFillDelete onClick={() => onDeleteImage(image.image_id, image.url)} className='dashboard__delete' />
+              <AiFillDelete onClick={() => onDeleteImage(image.image_id, image.url, image.image_id)} className='dashboard__delete' />
               <CopyToClipboard text={`${apiUrl}showImages${image.url}`}>
                 <AiFillCopy className='dashboard__delete' />
               </CopyToClipboard>
