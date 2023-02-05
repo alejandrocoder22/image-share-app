@@ -1,4 +1,7 @@
 import { Pool } from 'pg'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const pool: any = new Pool({
   user: 'postgres',
