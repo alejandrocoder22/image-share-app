@@ -4,6 +4,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import DropImage from '../components/DropImage'
 import { apiUrl } from '../services/apiUrl'
 import { getUserImages } from '../services/getAllImages'
+import { deleteImage } from '../services/onDeleteImage'
 const Dashboard: any = () => {
   const [images, setImages] = useState<any[]>([])
   const [selectedId, setSelectedId] = useState(null)
@@ -16,12 +17,7 @@ const Dashboard: any = () => {
     setSelectedId(id)
 
     setTimeout(() => {
-      fetch(`${apiUrl}images/${imageId}${imageUrl}`, {
-        method: 'DELETE',
-        headers: {
-          token: `Bearer ${localStorage.getItem('token')}`
-        }
-      }).catch(error => console.log(error))
+      deleteImage(imageId, imageUrl)
       setImages(images.filter(image => image.image_id !== imageId))
     }, 1000)
   }
