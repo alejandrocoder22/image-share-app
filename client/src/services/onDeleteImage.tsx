@@ -8,3 +8,5 @@ export const deleteImage: any = async (imageId: number | string, imageUrl: strin
     }
   }).catch(error => console.log(error))
 }
+
+
