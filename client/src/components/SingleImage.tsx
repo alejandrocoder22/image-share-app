@@ -14,12 +14,13 @@ const onDeleteImage: any = (imageId: number, imageUrl: string, id, setImages, se
 }
 
 const SingleImage: any = (props: any) => {
+  const { image, setImages, setSelectedId, images, selectedId } = props
   return (
-    <div className={`dashboard__image-container ${props.selectedId === props.image.image_id ? 'fade' : ''}`}>
-      <img loading='lazy' src={`${apiUrl}showImages${props.image.url}`} className='dashboard__image' />
+    <div className={`dashboard__image-container ${selectedId === image.image_id ? 'fade' : ''}`}>
+      <img loading='lazy' src={`${apiUrl}showImages${image.url}`} className='dashboard__image' />
       <div className='dashboard__image-actions'>
-        <AiFillDelete onClick={() => onDeleteImage(props.image.image_id, props.image.url, props.image.image_id, props.setImages, props.setSelectedId, props.images)} className='dashboard__delete' />
-        <CopyToClipboard text={`${apiUrl}showImages${props.image.url}`}>
+        <AiFillDelete onClick={() => onDeleteImage(image.image_id, image.url, image.image_id, setImages, setSelectedId, images)} className='dashboard__delete' />
+        <CopyToClipboard text={`${apiUrl}showImages${image.url}`}>
           <AiFillCopy className='dashboard__delete' />
         </CopyToClipboard>
       </div>
