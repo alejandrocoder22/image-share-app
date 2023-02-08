@@ -20,7 +20,7 @@ const DropImage: React.FC = (props: any) => {
     setConfirmationMessage('Image Uploaded')
     setTimeout(() => {
       setConfirmationMessage('')
-    }, 3000)
+    }, 2500)
   }
 
   const handleFile: any = (e: any) => {
