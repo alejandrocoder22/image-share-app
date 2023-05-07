@@ -29,9 +29,9 @@ const DropImage: React.FC = (props: any) => {
 
   const formContainer: any = useRef(null)
 
-  const dragStart: any = () => formContainer.current.classList.add('drag-start')
-  const dragEnd: any = () => formContainer.current.classList.remove('drag-start')
-  const drop: any = () => formContainer.current.classList.remove('drag-start')
+  const dragStart = (): void => formContainer.current.classList.add('drag-start')
+  const dragEnd = (): void => formContainer.current.classList.remove('drag-start')
+  const drop = (): void => formContainer.current.classList.remove('drag-start')
 
   return (
     <>
