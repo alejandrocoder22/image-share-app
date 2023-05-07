@@ -4,8 +4,17 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { apiUrl } from '../services/apiUrl'
 import { deleteImage } from '../services/onDeleteImage'
 import { onDeleteImage } from '../utils/onDeleteImage'
+import { Image } from '../types.d'
 
-const SingleImage: any = (props: any) => {
+interface Props {
+  images: Image
+  image: Image
+  setSelectedId: React.SetStateAction<any>
+  setImages: React.SetStateAction<any>
+  selectedId: number
+}
+
+const SingleImage: any = (props: Props) => {
   const { image, setImages, setSelectedId, images, selectedId } = props
   return (
     <div className={`dashboard__image-container ${selectedId === image.image_id ? 'fade' : ''}`}>
