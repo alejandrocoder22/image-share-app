@@ -2,17 +2,11 @@ import React, { useState, useRef } from 'react'
 import { FcAddImage } from 'react-icons/fc'
 import { BiImageAdd } from 'react-icons/bi'
 import { onUploadImage } from '../services/onUploadImage'
+import { type File } from '../types.d'
 
-const DropImage: React.FC = (props: any) => {
-  const [file, setFile] = useState<Blob | Object | any>({
-    name: '',
-    lastModified: 0,
-    lastModifiedDate: '',
-    webkitRelativePath: '',
-    size: 0,
-    type: ''
+const DropImage: React.FC = (setImages: React.SetStateAction<any>) => {
+  const [file, setFile] = useState<File | undefined>(undefined)
 
-  })
   const [confirmationMessage, setConfirmationMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -54,12 +48,12 @@ const DropImage: React.FC = (props: any) => {
 
         </>
       </div>
-      {file.name?.length > 0 && (
+      {file !== undefined && (
         <div className='form-container__image-uploaded-info'>
           <FcAddImage className='form-container__icon' />
-          <span className='form-container__span'>{file.name}</span>
+          <span className='form-container__span'>{file?.name}</span>
         </div>)}
-      <button onClick={(e) => onUploadImage(e, uploadConfirmationMessage, setFile, setErrorMessage, file, props.setImages)} disabled={!file} className='form-container__button'>Upload</button>
+      <button onClick={(e) => onUploadImage(e, uploadConfirmationMessage, setFile, setErrorMessage, file, setImages)} disabled={file == null} className='form-container__button'>Upload</button>
     </>
   )
 }

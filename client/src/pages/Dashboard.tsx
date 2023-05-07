@@ -10,7 +10,6 @@ const Dashboard: any = () => {
   useEffect(() => {
     getUserImages(setImages)
   }, [])
-
   return (
     <div className='dashboard wrapper min-height'>
       <div className='dashboard__drop-image-container'>
