@@ -6,3 +6,13 @@ export interface File {
   type: string
   webkitRelativePath: string
 }
+
+export interface Image {
+
+  image_id: number
+  url: string
+  user_id: number
+  created_at: string
+  updated_at: string
+
+}

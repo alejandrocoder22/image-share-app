@@ -7,6 +7,8 @@ export const getUserImages: any = (setImages) => {
       token: `Bearer ${localStorage.getItem('token')}`
     }
   }).then(async response => await response.json())
-    .then(privateImages => setImages(privateImages.data))
+    .then(privateImages => {
+      setImages(privateImages.data)
+    })
     .catch(error => console.log(error))
 }

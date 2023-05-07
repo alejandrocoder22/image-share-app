@@ -7,8 +7,8 @@ import { type File } from '../types.d'
 const DropImage: React.FC = (setImages: React.SetStateAction<any>) => {
   const [file, setFile] = useState<File | undefined>(undefined)
 
-  const [confirmationMessage, setConfirmationMessage] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [confirmationMessage, setConfirmationMessage] = useState <string>('')
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   const uploadConfirmationMessage: any = () => {
     setConfirmationMessage('Image Uploaded')
