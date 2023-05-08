@@ -1,7 +1,17 @@
+import { type File, Image } from '../types.d'
 import { apiUrl } from './apiUrl'
 import { getUserImages } from './getAllImages'
 
-export const onUploadImage: any = (e: any, uploadConfirmationMessage: any, setFile: any, setErrorMessage: any, file: any, setImages: any) => {
+interface Props {
+  e: React.MouseEvent
+  uploadConfirmationMessage: () => void
+  setFile: () => void
+  setErrorMessage: () => void
+  file: File
+  setImages: Image
+}
+
+export const onUploadImage = ({ e, uploadConfirmationMessage, setFile, setErrorMessage, file, setImages }: Props): void => {
   e.preventDefault()
 
   const formData = new FormData()
@@ -18,8 +28,8 @@ export const onUploadImage: any = (e: any, uploadConfirmationMessage: any, setFi
       console.log(uploadStatus)
       if (uploadStatus.status === 'SUCESS') {
         uploadConfirmationMessage()
-        setFile('')
-        setErrorMessage('')
+        setFile()
+        setErrorMessage()
         getUserImages(setImages)
       }
       if (uploadStatus.status === 'FAIL') {

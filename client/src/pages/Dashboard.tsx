@@ -6,7 +6,7 @@ import { getUserImages } from '../services/getAllImages'
 import { Image } from '../types.d'
 const Dashboard: any = () => {
   const [images, setImages] = useState<Image[]>([])
-  const [selectedId, setSelectedId] = useState(null)
+  const [selectedId, setSelectedId] = useState<null | number>(null)
 
   useEffect(() => {
     getUserImages(setImages)
