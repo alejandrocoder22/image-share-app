@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react'
 import DropImage from '../components/DropImage'
 import SingleImage from '../components/SingleImage'
 import { getUserImages } from '../services/getAllImages'
+import { Image } from '../types.d'
 const Dashboard: any = () => {
-  const [images, setImages] = useState<any[]>([])
+  const [images, setImages] = useState<Image[]>([])
   const [selectedId, setSelectedId] = useState(null)
 
   useEffect(() => {
