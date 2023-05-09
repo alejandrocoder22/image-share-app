@@ -2,7 +2,7 @@ import * as authServices from '../services/authServices'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import express from 'express'
-import { DeleteUser, LoginUser } from '../types'
+import { RequestWithUser } from '../types'
 
 const createUser: any = async (req: express.Request, res: express.Response) => {
   const credentials = req.body
@@ -14,7 +14,7 @@ const createUser: any = async (req: express.Request, res: express.Response) => {
   }
 }
 
-const deleteUser: any = async (req: DeleteUser, res: express.Response) => {
+const deleteUser: any = async (req: RequestWithUser, res: express.Response) => {
   const { id } = req.params
   const { user } = req.body
   try {
@@ -29,7 +29,7 @@ const deleteUser: any = async (req: DeleteUser, res: express.Response) => {
   }
 }
 
-const loginUser: any = async (req: express.Request, res: express.Response) => {
+const loginUser: any = async (req: RequestWithUser, res: express.Response) => {
   const { username, password } = req.body
   try {
     const userExist = await authServices.loginUser(username)
@@ -46,7 +46,7 @@ const loginUser: any = async (req: express.Request, res: express.Response) => {
   }
 }
 
-const verifyToken: any = (req: LoginUser, res: express.Response) => {
+const verifyToken: any = (req: RequestWithUser, res: express.Response) => {
   res.status(200).send({ status: 'SUCESS', data: req.user })
 }
 

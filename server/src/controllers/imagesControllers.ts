@@ -1,7 +1,9 @@
 import * as imagesServices from '../services/imagesServices'
 import fs from 'fs'
+import express from 'express'
+import { RequestWithUser } from '../types'
 
-const getPersonalImages: any = async (req: any, res: any) => {
+const getPersonalImages: any = async (req: RequestWithUser, res: express.Response) => {
   const user = req.user
   try {
     const images = await imagesServices.getPersonalImages(user.user_id)
@@ -11,7 +13,7 @@ const getPersonalImages: any = async (req: any, res: any) => {
   }
 }
 
-const createImage: any = (req: any, res: any) => {
+const createImage = (req: any, res: express.Response): void => {
   const file = req.file
   const fileUrl = `/${file.filename}`
   try {
@@ -29,7 +31,7 @@ const createImage: any = (req: any, res: any) => {
   }
 }
 
-const deleteImage: any = (req: any, res: any) => {
+const deleteImage: any = (req: express.Request, res: express.Response) => {
   const { imageId, imgUrl } = req.params
   fs.unlink(`./images/${imgUrl}`, err => console.log(err))
   try {
