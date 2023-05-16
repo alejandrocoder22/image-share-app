@@ -1,8 +1,8 @@
 import pool from '../database'
 import bcrypt from 'bcrypt'
-import { CredentialsEntry } from '../types'
+import { Credentials } from '../types'
 
-const createUser: any = (credentials: CredentialsEntry) => {
+const createUser: any = (credentials: Credentials) => {
   const SALT_ROUNDS = 10
 
   bcrypt.hash(credentials.password, SALT_ROUNDS, async function (_err, hash) {

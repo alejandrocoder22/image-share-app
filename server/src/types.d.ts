@@ -11,6 +11,11 @@ interface User {
   updated_at?: string
 }
 
+export interface Credentials {
+  password: string
+  username: string
+}
+
 export interface RequestWithUser extends express.Request {
   user: User
 }
