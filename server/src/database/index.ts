@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const pool: any = new Pool({
+const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'images_app',
