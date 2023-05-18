@@ -13,7 +13,7 @@ const getPersonalImages: any = async (req: RequestWithUser, res: express.Respons
   }
 }
 
-const createImage = (req: any, res: express.Response): void => {
+const createImage = (req: express.Response, res: express.Response): void => {
   const file = req.file
   const fileUrl = `/${file.filename}`
   try {
