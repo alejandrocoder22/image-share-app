@@ -42,17 +42,17 @@ const Router: any = () => {
   }, [])
 
   return (
-    <main id={themeContext.themeMode}>
-      <BrowserRouter>
-        <Menu setThemeMode={themeContext.setThemeMode} />
+    <BrowserRouter>
+      <Menu id={themeContext.themeMode} setThemeMode={themeContext.setThemeMode} />
+      <main id={themeContext.themeMode}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/dashboard' element={authContext.user.isLogged ? <Dashboard /> : <Login />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
         </Routes>
-      </BrowserRouter>
-    </main>
+      </main>
+    </BrowserRouter>
   )
 }
 

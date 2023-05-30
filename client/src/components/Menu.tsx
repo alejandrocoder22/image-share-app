@@ -18,19 +18,20 @@ const Menu: any = (props: any) => {
   }
 
   return (
-    <nav className='nav wrapper'>
-      <Link to='/' className='nav__logo'>LOGO</Link>
-      <div className='nav__right'>
-        {userContext.user.isLogged && (
-          <>
-            <Link to='/dashboard' className='nav__link'>Dashboard</Link>
-            <span className='nav__logout' onClick={onLogout}>Logout</span>
-          </>
-        )}
-        <ToggleThemeMode onTogleThemeMode={onTogleThemeMode} />
-      </div>
-
-    </nav>
+    <header id={props.id}>
+      <nav className='nav wrapper'>
+        <Link to='/' className='nav__logo'>LOGO</Link>
+        <div className='nav__right'>
+          {userContext.user.isLogged && (
+            <>
+              <Link to='/dashboard' className='nav__link'>Dashboard</Link>
+              <span className='nav__logout' onClick={onLogout}>Logout</span>
+            </>
+          )}
+          <ToggleThemeMode onTogleThemeMode={onTogleThemeMode} />
+        </div>
+      </nav>
+    </header>
   )
 }
 
