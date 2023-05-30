@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import introImage from '../images/intro-image.png'
-const Home = () => {
+const Home = (): JSX.Element => {
   return (
-    <main className='home wrapper min-height'>
+    <section className='home wrapper min-height'>
       <div className='home__left'>
         <h1 className='home__h1'>A picture is worth a thousands words</h1>
         <h2 className='home__h2'>So store them and take a breath</h2>
@@ -11,7 +11,7 @@ const Home = () => {
       <div className='home__right'>
         <img src={introImage} alt='Upload image' />
       </div>
-    </main>
+    </section>
   )
 }
 

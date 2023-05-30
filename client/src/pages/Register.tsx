@@ -5,7 +5,7 @@ import { UserContext } from '../context/AuthContextProvider'
 import useForm from '../hooks/useForm'
 import { onRegister } from '../services/onRegister'
 
-const Register: any = () => {
+const Register = (): JSX.Element => {
   const navigate = useNavigate()
   const userContext = useContext(UserContext)
   const { handleForm, form } = useForm()

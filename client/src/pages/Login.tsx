@@ -5,7 +5,7 @@ import useForm from '../hooks/useForm'
 import { useContext } from 'react'
 import { onLogin } from '../services/onLogin'
 
-const Login: any = () => {
+const Login = (): JSX.Element => {
   const { handleForm, form } = useForm()
 
   const navigate = useNavigate()

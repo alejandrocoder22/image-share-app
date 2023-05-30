@@ -4,7 +4,7 @@ import { BiImageAdd } from 'react-icons/bi'
 import { onUploadImage } from '../services/onUploadImage'
 import { type File, type Image } from '../types.d'
 
-const DropImage = (setImages: React.SetStateAction<Image>): any => {
+const DropImage = (setImages: React.SetStateAction<Image>): JSX.Element => {
   const [file, setFile] = useState<File | null>(null)
   const [confirmationMessage, setConfirmationMessage] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
