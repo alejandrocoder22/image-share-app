@@ -2,7 +2,7 @@ import * as authServices from '../services/authServices'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import express from 'express'
-import { RequestWithUser } from '../types'
+import { RequestWithUser } from '../interfaces/types'
 
 const createUser: any = async (req: express.Request, res: express.Response) => {
   const credentials = req.body
