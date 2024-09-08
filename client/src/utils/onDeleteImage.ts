@@ -1,4 +1,4 @@
-export const onDeleteImage: any = (imageId: number, imageUrl: string, id: string, setImages, setSelectedId, images, deleteImage) => {
+export const onDeleteImage = (imageId: number, imageUrl: string, id: string, setImages, setSelectedId, images, deleteImage): void => {
   setSelectedId(id)
   setTimeout(() => {
     deleteImage(imageId, imageUrl)

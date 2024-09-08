@@ -1,9 +1,15 @@
+import { userContextType } from '../context/AuthContextProvider'
 import { apiUrl } from './apiUrl'
 import { onLogin } from './onLogin'
 
-const delay: any = async (time: number) => await new Promise(resolve => setTimeout(resolve, time))
+const delay = async (time: number): Promise<void> => await new Promise(resolve => setTimeout(resolve, time))
 
-export const onRegister: any = async (form: any, userContext: any, navigate: any, e: any) => {
+interface Form {
+  username: string
+  password: string
+}
+
+export const onRegister = async (form: Form, userContext: userContextType, navigate: (url: string) => void, e: React.FormEvent<HTMLFormElement>): Promise<void> => {
   e.preventDefault()
 
   await fetch(apiUrl + 'auth', {

@@ -15,11 +15,11 @@ import { UserContext } from '../context/AuthContextProvider'
 import Dashboard from '../pages/Dashboard'
 import { apiUrl } from '../services/apiUrl'
 
-const Router: any = () => {
+const Router = (): JSX.Element => {
   const themeContext: any = useContext(ThemeContext)
   const authContext: any = useContext(UserContext)
 
-  const verifyToken: any = () => {
+  const verifyToken = (): void => {
     fetch(apiUrl + 'auth/verify', {
       method: 'GET',
       headers: {
