@@ -5,7 +5,7 @@ export enum ThemeOptions {
   light = 'light'
 }
 
-interface ThemeContextTypes {
+export interface ThemeContextTypes {
   themeMode: string
   setThemeMode: (mode: ThemeOptions) => void
 }

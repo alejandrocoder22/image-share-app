@@ -1,6 +1,6 @@
 import { apiUrl } from './apiUrl'
 
-export const deleteImage: any = async (imageId: number | string, imageUrl: string) => {
+export const deleteImage = async (imageId: number | string, imageUrl: string): Promise<void> => {
   return await fetch(`${apiUrl}images/${imageId}${imageUrl}`, {
     method: 'DELETE',
     headers: {
@@ -8,5 +8,3 @@ export const deleteImage: any = async (imageId: number | string, imageUrl: strin
     }
   }).catch(error => console.log(error))
 }
-
-

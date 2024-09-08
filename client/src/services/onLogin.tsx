@@ -1,6 +1,12 @@
+import { userContextType } from '../context/AuthContextProvider'
 import { apiUrl } from './apiUrl'
 
-export const onLogin: any = (form: any, userContext: any, navigate: any, e: any) => {
+interface formTypes {
+  username: string
+  password: string
+}
+
+export const onLogin = (form: formTypes, userContext: userContextType, navigate: (url: string) => void, e: React.FormEvent<HTMLFormElement>): void => {
   e.preventDefault()
 
   if (form.username.length > 0 && form.password.length > 0) {

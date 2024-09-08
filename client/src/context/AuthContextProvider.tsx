@@ -6,7 +6,7 @@ interface User {
   user?: string | null
 }
 
-interface userContextType {
+export interface userContextType {
   user: User
   setUser: (user: User) => void
 }
