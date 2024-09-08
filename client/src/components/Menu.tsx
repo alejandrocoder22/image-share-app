@@ -5,7 +5,7 @@ import { UserContext } from '../context/AuthContextProvider'
 
 const Menu: any = (props: any) => {
   const onTogleThemeMode: any = () => {
-    props.setThemeMode((prev: any) => prev === 'light' ? 'dark' : 'light')
+    props.setThemeMode((prev: string) => prev === 'light' ? 'dark' : 'light')
   }
   const userContext: any = useContext(UserContext)
   const navigate = useNavigate()
