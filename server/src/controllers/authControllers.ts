@@ -2,7 +2,6 @@ import * as authServices from '../services/authServices'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import express from 'express'
-import { RequestWithUser } from '../interfaces/types'
 
 const createUser = async (req: express.Request, res: express.Response): Promise<void> => {
   const credentials = req.body
@@ -14,12 +13,12 @@ const createUser = async (req: express.Request, res: express.Response): Promise<
   }
 }
 
-const deleteUser = async (req: RequestWithUser, res: express.Response): Promise<void> => {
+const deleteUser = async (req: any, res: express.Response): Promise<void> => {
   const { id } = req.params
   const { user } = req.body
   try {
     if (user.user_id === id) {
-      await authServices.deleteUser(id, user)
+      await authServices.deleteUser(id)
       res.status(200).send({ status: 'SUCESS' })
     } else {
       res.status(400).send({ status: 'FAIL', message: 'You can only delete your images' })
@@ -29,7 +28,7 @@ const deleteUser = async (req: RequestWithUser, res: express.Response): Promise<
   }
 }
 
-const loginUser = async (req: RequestWithUser, res: express.Response): Promise<void> => {
+const loginUser = async (req: any, res: express.Response): Promise<any> => {
   const { username, password } = req.body
   try {
     const userExist = await authServices.loginUser(username)
@@ -46,8 +45,8 @@ const loginUser = async (req: RequestWithUser, res: express.Response): Promise<v
   }
 }
 
-const verifyToken = async (req: RequestWithUser, res: express.Response): Promise<void> => {
+const verifyToken = async (req: any, res: express.Response): Promise<void> => {
   res.status(200).send({ status: 'SUCESS', data: req.user })
 }
 
-export { createUser, deleteUser, loginUser, verifyToken }
+export default { createUser, deleteUser, loginUser, verifyToken }

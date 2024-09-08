@@ -19,7 +19,7 @@ const loginUser = async (username: string): Promise<QueryResult> => {
   return await pool.query('SELECT * FROM users WHERE username = $1', [username])
 }
 
-const deleteUser = async (id: number): Promise<QueryResult> => {
+const deleteUser = async (id: string): Promise<QueryResult> => {
   return await pool.query('DELETE FROM users WHERE ID = $1', [id])
 }
 
