@@ -1,5 +1,6 @@
 /server/node_modules
 /server/build
+/server/images
 /server/.env
 /client/node_modules
 /client/dist
