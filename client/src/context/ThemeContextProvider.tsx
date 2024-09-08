@@ -1,9 +1,19 @@
 import { createContext, useState } from 'react'
 
-export const ThemeContext: any = createContext(null)
+export enum ThemeOptions {
+  dark = 'dark',
+  light = 'light'
+}
 
-const ThemeContextProvider: any = (props: any) => {
-  const [themeMode, setThemeMode] = useState('dark')
+interface ThemeContextTypes {
+  themeMode: string
+  setThemeMode: (mode: ThemeOptions) => void
+}
+
+export const ThemeContext = createContext<ThemeContextTypes | null>(null)
+
+const ThemeContextProvider = (props: { children: React.ReactNode }): JSX.Element => {
+  const [themeMode, setThemeMode] = useState<ThemeOptions>(ThemeOptions.dark)
 
   return (
     <ThemeContext.Provider value={{ themeMode, setThemeMode }}>{props.children}</ThemeContext.Provider>
