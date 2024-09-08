@@ -4,10 +4,10 @@ import { BiImageAdd } from 'react-icons/bi'
 import { onUploadImage } from '../services/onUploadImage'
 import { type File, type Image } from '../types.d'
 
-const DropImage = (setImages: React.SetStateAction<Image>): JSX.Element => {
+const DropImage = (setImages: (image: Image | null) => void): JSX.Element => {
   const [file, setFile] = useState<File | null>(null)
-  const [confirmationMessage, setConfirmationMessage] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [confirmationMessage, setConfirmationMessage] = useState<string | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>('')
 
   const uploadConfirmationMessage = (): void => {
     setConfirmationMessage('Image Uploaded')
@@ -30,8 +30,8 @@ const DropImage = (setImages: React.SetStateAction<Image>): JSX.Element => {
 
   return (
     <>
-      {confirmationMessage?.length > 0 && <span className='form-container__confirmation-message'>{confirmationMessage}</span>}
-      {errorMessage?.length > 0 && <span className='form-container__confirmation-message'>{errorMessage}</span>}
+      {confirmationMessage !== null && <span className='form-container__confirmation-message'>{confirmationMessage}</span>}
+      {errorMessage !== null && <span className='form-container__confirmation-message'>{errorMessage}</span>}
       <div ref={formContainer} className='form-container'>
 
         <>
