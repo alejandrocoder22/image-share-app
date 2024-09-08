@@ -1,9 +1,23 @@
 import { useState, createContext } from 'react'
 
-export const UserContext: any = createContext(null)
+interface User {
+  username?: string | null
+  isLogged: boolean
+  user?: string | null
+}
 
-const AuthContextProvider: any = (props: any) => {
-  const [user, setUser] = useState({
+interface userContextType {
+  user: User
+  setUser: (user: User) => void
+}
+export const UserContext = createContext<userContextType | null>(null)
+
+interface Props {
+  children: React.ReactNode
+}
+
+const AuthContextProvider = (props: Props): JSX.Element => {
+  const [user, setUser] = useState<User>({
     username: '',
     isLogged: false
   })

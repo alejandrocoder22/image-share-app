@@ -16,9 +16,10 @@ interface UserContextType {
 }
 
 const Menu = (props: Props): JSX.Element => {
-  const onTogleThemeMode: any = () => {
+  const onTogleThemeMode = (): void => {
     props.setThemeMode((prev: string) => prev === 'light' ? 'dark' : 'light')
   }
+
   const userContext = useContext<UserContextType>(UserContext)
 
   const navigate = useNavigate()

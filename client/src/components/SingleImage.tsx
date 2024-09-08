@@ -9,12 +9,12 @@ import { Image } from '../types.d'
 interface Props {
   images: Image
   image: Image
-  setSelectedId: React.SetStateAction<any>
-  setImages: React.SetStateAction<any>
+  setSelectedId: (id: string | number) => void
+  setImages: (image: Image | null) => void
   selectedId: number
 }
 
-const SingleImage: any = (props: Props) => {
+const SingleImage = (props: Props): JSX.Element => {
   const { image, setImages, setSelectedId, images, selectedId } = props
   return (
     <div className={`dashboard__image-container ${selectedId === image.image_id ? 'fade' : ''}`}>

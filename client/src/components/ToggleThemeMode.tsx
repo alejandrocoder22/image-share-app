@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 import { ThemeContext } from '../context/ThemeContextProvider'
 
-const ToggleThemeMode: any = (props: any) => {
-  const themeContext: any = useContext(ThemeContext)
+const ToggleThemeMode = (props: { onTogleThemeMode: () => void }): JSX.Element => {
+  const themeContext: { themeMode: string } = useContext(ThemeContext)
 
   return (
     <div onClick={props.onTogleThemeMode} className={`toggle ${themeContext.themeMode === 'light' ? 'toggle__light' : 'toggle__dark'}`}>
