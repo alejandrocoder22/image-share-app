@@ -5,10 +5,10 @@ import { getUserImages } from './getAllImages'
 interface Props {
   e: React.MouseEvent
   uploadConfirmationMessage: () => void
-  setFile: () => void
-  setErrorMessage: () => void
-  file: File
-  setImages: Image
+  setFile: (file: File | null) => void
+  setErrorMessage: (message: string | null) => void
+  file: File | null
+  setImages: (image: Image | null) => void
 }
 
 export const onUploadImage = ({ e, uploadConfirmationMessage, setFile, setErrorMessage, file, setImages }: Props): void => {
@@ -28,8 +28,8 @@ export const onUploadImage = ({ e, uploadConfirmationMessage, setFile, setErrorM
       console.log(uploadStatus)
       if (uploadStatus.status === 'SUCESS') {
         uploadConfirmationMessage()
-        setFile()
-        setErrorMessage()
+        setFile(null)
+        setErrorMessage(null)
         getUserImages(setImages)
       }
       if (uploadStatus.status === 'FAIL') {
