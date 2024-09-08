@@ -1,6 +1,5 @@
 
 import express from 'express'
-import multer from 'multer'
 export type Visibility = 'public' | 'private'
 
 interface User {
@@ -29,7 +28,7 @@ export interface UploadedFile {
   fieldname: 'string'
   originalName: 'string'
   encoding: 'string'
-  mimetype: 'string'
+  mimetype?: 'string'
   destination: 'string'
   filename: 'string'
   path: 'string'
