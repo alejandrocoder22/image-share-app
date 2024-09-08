@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, ChangeEvent } from 'react'
 import { FcAddImage } from 'react-icons/fc'
 import { BiImageAdd } from 'react-icons/bi'
 import { onUploadImage } from '../services/onUploadImage'
@@ -16,15 +16,17 @@ const DropImage = (setImages: React.SetStateAction<Image>): JSX.Element => {
     }, 2500)
   }
 
-  const handleFile: any = (e: any) => {
-    setFile(e.target.files[0])
+  const handleFile = (e: ChangeEvent<HTMLInputElement>): void => {
+    if (e.target.files != null) {
+      setFile(e.target.files[0])
+    }
   }
 
-  const formContainer: any = useRef(null)
+  const formContainer = useRef<HTMLDivElement | null>(null)
 
-  const dragStart = (): void => formContainer.current.classList.add('drag-start')
-  const dragEnd = (): void => formContainer.current.classList.remove('drag-start')
-  const drop = (): void => formContainer.current.classList.remove('drag-start')
+  const dragStart = (): void => formContainer.current?.classList.add('drag-start')
+  const dragEnd = (): void => formContainer.current?.classList.remove('drag-start')
+  const drop = (): void => formContainer.current?.classList.remove('drag-start')
 
   return (
     <>
