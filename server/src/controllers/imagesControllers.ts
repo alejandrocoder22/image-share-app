@@ -3,7 +3,7 @@ import fs from 'fs'
 import express from 'express'
 import { RequestWithUser, RequestWithUserAndFile } from '../interfaces/types'
 
-const getPersonalImages: any = async (req: RequestWithUser, res: express.Response) => {
+const getPersonalImages = async (req: RequestWithUser, res: express.Response): Promise<void> => {
   const user = req.user
   try {
     const images = await imagesServices.getPersonalImages(user.user_id)
@@ -13,13 +13,14 @@ const getPersonalImages: any = async (req: RequestWithUser, res: express.Respons
   }
 }
 
-const createImage = async (req: RequestWithUserAndFile, res: any): Promise<void> => {
+const createImage = async (req: RequestWithUserAndFile, res: express.Response): Promise<void> => {
   const file = req.file
   const fileUrl = `/${file.filename}`
   try {
     // @ts-expect-error
     if (file.mimetype !== 'image/jpeg' || file.mimetype !== 'image/png') {
-      return res.status(400).send({ status: 'FAIL', message: 'Image must be PNG or JPEG' })
+      res.status(400).send({ status: 'FAIL', message: 'Image must be PNG or JPEG' })
+      return
     }
 
     if (file.size > 2000000) {
@@ -32,7 +33,7 @@ const createImage = async (req: RequestWithUserAndFile, res: any): Promise<void>
   }
 }
 
-const deleteImage: any = (req: express.Request, res: express.Response) => {
+const deleteImage = async (req: express.Request, res: express.Response): Promise<void> => {
   const { imageId, imgUrl } = req.params
   fs.unlink(`./images/${imgUrl}`, err => console.log(err))
   try {

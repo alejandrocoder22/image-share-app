@@ -1,8 +1,9 @@
 import pool from '../database'
 import bcrypt from 'bcrypt'
 import { Credentials } from '../interfaces/types'
+import { QueryResult } from 'pg'
 
-const createUser: any = (credentials: Credentials) => {
+const createUser = async (credentials: Credentials): Promise<void> => {
   const SALT_ROUNDS = 10
 
   try {
@@ -14,11 +15,11 @@ const createUser: any = (credentials: Credentials) => {
   }
 }
 
-const loginUser: any = async (username: string) => {
+const loginUser = async (username: string): Promise<QueryResult> => {
   return await pool.query('SELECT * FROM users WHERE username = $1', [username])
 }
 
-const deleteUser: any = async (id: number) => {
+const deleteUser = async (id: number): Promise<QueryResult> => {
   return await pool.query('DELETE FROM users WHERE ID = $1', [id])
 }
 

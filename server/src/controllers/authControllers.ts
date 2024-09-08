@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken'
 import express from 'express'
 import { RequestWithUser } from '../interfaces/types'
 
-const createUser: any = async (req: express.Request, res: express.Response) => {
+const createUser = async (req: express.Request, res: express.Response): Promise<void> => {
   const credentials = req.body
   try {
     await authServices.createUser(credentials)
@@ -14,12 +14,12 @@ const createUser: any = async (req: express.Request, res: express.Response) => {
   }
 }
 
-const deleteUser: any = async (req: RequestWithUser, res: express.Response) => {
+const deleteUser = async (req: RequestWithUser, res: express.Response): Promise<void> => {
   const { id } = req.params
   const { user } = req.body
   try {
     if (user.user_id === id) {
-      authServices.deleteUser(id, user)
+      await authServices.deleteUser(id, user)
       res.status(200).send({ status: 'SUCESS' })
     } else {
       res.status(400).send({ status: 'FAIL', message: 'You can only delete your images' })
@@ -29,7 +29,7 @@ const deleteUser: any = async (req: RequestWithUser, res: express.Response) => {
   }
 }
 
-const loginUser: any = async (req: RequestWithUser, res: express.Response) => {
+const loginUser = async (req: RequestWithUser, res: express.Response): Promise<void> => {
   const { username, password } = req.body
   try {
     const userExist = await authServices.loginUser(username)
@@ -46,7 +46,7 @@ const loginUser: any = async (req: RequestWithUser, res: express.Response) => {
   }
 }
 
-const verifyToken: any = (req: RequestWithUser, res: express.Response) => {
+const verifyToken = async (req: RequestWithUser, res: express.Response): Promise<void> => {
   res.status(200).send({ status: 'SUCESS', data: req.user })
 }
 
