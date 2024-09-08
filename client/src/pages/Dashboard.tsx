@@ -5,7 +5,7 @@ import SingleImage from '../components/SingleImage'
 import { getUserImages } from '../services/getAllImages'
 import { Image } from '../types.d'
 const Dashboard = (): JSX.Element => {
-  const [images, setImages] = useState<Image[]>([])
+  const [images, setImages] = useState<Image[] | null>([])
   const [selectedId, setSelectedId] = useState<null | number>(null)
 
   useEffect(() => {
