@@ -1,9 +1,8 @@
 import * as imagesServices from '../services/imagesServices'
 import fs from 'fs'
 import express from 'express'
-import { RequestWithUser, RequestWithUserAndFile } from '../interfaces/types'
 
-const getPersonalImages = async (req: RequestWithUser, res: express.Response): Promise<void> => {
+const getPersonalImages = async (req: any, res: express.Response): Promise<void> => {
   const user = req.user
   try {
     const images = await imagesServices.getPersonalImages(user.user_id)
@@ -13,12 +12,11 @@ const getPersonalImages = async (req: RequestWithUser, res: express.Response): P
   }
 }
 
-const createImage = async (req: RequestWithUserAndFile, res: express.Response): Promise<void> => {
+const createImage = async (req: any, res: express.Response): Promise<void> => {
   const file = req.file
   const fileUrl = `/${file.filename}`
   try {
-    // @ts-expect-error
-    if (file.mimetype !== 'image/jpeg' || file.mimetype !== 'image/png') {
+    if (file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png') {
       res.status(400).send({ status: 'FAIL', message: 'Image must be PNG or JPEG' })
       return
     }
