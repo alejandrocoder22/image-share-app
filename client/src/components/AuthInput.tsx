@@ -1,5 +1,11 @@
+interface Props {
+  labelText: string
+  handleChange: () => void
+  type: string
+  nameText: string
+}
 
-const AuthInput: any = (props: any) => {
+const AuthInput = (props: Props): JSX.Element => {
   return (
     <>
       <label className='auth__label'>{props.labelText}</label>
